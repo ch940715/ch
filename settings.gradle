@@ -1,0 +1,3 @@
+include 'backend:sw-registry'
+findProject(':backend:sw-registry')?.name = 'sw-registry'
+

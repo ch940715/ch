@@ -1,4 +1,3 @@
-
 // 编译脚本
 buildscript {
     ext {
@@ -15,6 +14,7 @@ buildscript {
     }
 
     dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
     }
 }
@@ -42,6 +42,8 @@ subprojects {
     // 仓库配置
     repositories {
         mavenLocal()
+        maven { url 'https://repo.spring.io/libs-milestone'
+        }
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         jcenter()
@@ -56,25 +58,7 @@ subprojects {
         compile.exclude module: "undertow-websockets-jsr"
     }
 
-    // 依赖管理
-    dependencyManagement {
-        imports {
-            mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
-            mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
-        }
 
-        dependencies {
-            // 文档
-            dependency("io.springfox:springfox-swagger2:2.7.0")
-            dependency("io.springfox:springfox-swagger-ui:2.7.0")
-            // 工具类
-            dependency("commons-collections:commons-collections:3.2.2")
-            dependency("org.apache.commons:commons-lang3:3.6")
-            // 日志
-            dependency("org.slf4j:slf4j-api:1.7.25")
-            dependency("com.lmax:disruptor:3.3.7")
-        }
-    }
 
     // 依赖配置
     dependencies {
@@ -83,15 +67,18 @@ subprojects {
         compile('org.springframework.boot:spring-boot-starter-log4j2')
         compile("com.lmax:disruptor")
         compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
-
         compileOnly("org.springframework.boot:spring-boot-devtools")
         compileOnly("javax.servlet:javax.servlet-api")
-
-        // 编译测试
-        testCompile("com.patzn.cloud:patzn-test-parent:1.0")
     }
 
     // 编译环境 JDK1.8
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
+
+    compileKotlin {
+        kotlinOptions.jvmTarget = "1.8"
+    }
+    compileTestKotlin {
+        kotlinOptions.jvmTarget = "1.8"
+    }
 }

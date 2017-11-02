@@ -2,7 +2,7 @@
 
 SSM 架构后台管理系统
 
-![SW 历史版本](https://gitee.com/juapk/SpringWind/tree/spring-mvc/ "SW mvc 版")
+![SW 历史版本](https://gitee.com/baomidou/SpringWind/tree/spring-mvc/ "SW mvc 版")
 
 
 > 技术讨论 QQ 群 235079513（老司机多） 二群：320625872（新）

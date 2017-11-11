@@ -2,7 +2,7 @@
 buildscript {
     ext {
         kotlin_version = '1.1.51'
-        springBootVersion = "1.5.7.RELEASE"
+        springBootVersion = "1.5.8.RELEASE"
         springCloudVersion = "Dalston.SR4"
     }
 
@@ -33,6 +33,7 @@ subprojects {
     apply plugin: "java"
     apply plugin: 'kotlin'
     apply plugin: "idea"
+    apply plugin: "io.spring.dependency-management"
 
     tasks.withType(JavaCompile) {
         options.encoding = 'UTF-8'
@@ -42,8 +43,7 @@ subprojects {
     // 仓库配置
     repositories {
         mavenLocal()
-        maven { url 'https://repo.spring.io/libs-milestone'
-        }
+        maven { url 'https://repo.spring.io/libs-milestone' }
         maven { url "http://maven.aliyun.com/nexus/content/groups/public/" }
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         jcenter()
@@ -58,10 +58,10 @@ subprojects {
         compile.exclude module: "undertow-websockets-jsr"
     }
 
-
-
     // 依赖配置
     dependencies {
+        compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version")
+        compile("org.jetbrains.kotlin:kotlin-reflect:$kotlin_version")
         // 日志
         compile("org.slf4j:slf4j-api")
         compile('org.springframework.boot:spring-boot-starter-log4j2')

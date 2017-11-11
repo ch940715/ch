@@ -1,0 +1,36 @@
+server:
+  port: 7001
+spring:
+  application:
+    name: eureka
+
+eureka:
+  instance:
+    hostname: localhost
+    prefer-ip-address: true
+  client:
+    registerWithEureka: false
+    fetchRegistry: false
+    service-url:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+  server:
+    enable-self-preservation: false
+#    waitTimeInMsWhenSyncEmpty: 0
+
+#开启动态网关服务发现
+ribbon:
+  eureka:
+    enabled: true
+
+# 登录授权
+security:
+  basic:
+    enabled: true
+  user:
+    name: springwind
+    password: 1q&*!sw123
+    role: SYSTEM
+
+# 日志
+logging:
+  config: classpath:log4j2.xml

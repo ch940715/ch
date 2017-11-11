@@ -2,6 +2,11 @@ apply plugin: 'org.springframework.boot'
 
 apply from: "${rootDir}/manager.gradle"
 
-dependencies {
+description "服务网关"
 
+dependencies {
+    compile("org.springframework.cloud:spring-cloud-starter-zuul")
+    compile("org.springframework.cloud:spring-cloud-starter-eureka")
+    compile("org.springframework.boot:spring-boot-starter-undertow")
+    compile("org.springframework.boot:spring-boot-starter-web")
 }

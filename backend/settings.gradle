@@ -4,4 +4,5 @@ rootProject.name = 'SpringWind'
 // SpringCoud 相关服务模块
 include 'sw-registry'
 include 'sw-gateway'
+include 'sw-service-base'
 
